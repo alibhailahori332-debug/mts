@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>MTS – Multan Technician Service</title>
+  <!-- Google Fonts: Poppins & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #1e2a3a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Color variables */
+    :root {
+      --primary: #0b2b4f;
+      --secondary: #e67e22;
+      --bg-white: #ffffff;
+      --bg-light: #f6f9fc;
+      --text-dark: #1a2634;
+      --text-muted: #4a5a6e;
+      --shadow-sm: 0 8px 24px rgba(0,0,0,0.05);
+      --shadow-hover: 0 16px 40px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --radius-card: 14px;
+    }
+
+    html { font-size: 15px; }
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.2rem; }
+    h4 { font-size: 1.05rem; }
+    p, li, .text-sm { font-size: 0.92rem; }
+    .small-text { font-size: 0.82rem; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: 0.3s ease;
+      box-shadow: 0 6px 16px rgba(230, 126, 34, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-primary i { font-size: 0.9rem; }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(230, 126, 34, 0.3);
+      background: #d35400;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover {
+      background: #fff;
+      color: var(--primary);
+    }
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-whatsapp:hover {
+      background: #1da851;
+      transform: scale(1.02);
+    }
+
+    /* FIXED WHATSAPP BUTTON - bottom right */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 999;
+      background: #25d366;
+      color: #fff;
+      width: 58px;
+      height: 58px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 8px 28px rgba(37, 211, 102, 0.4);
+      transition: 0.3s ease;
+      text-decoration: none;
+      border: 3px solid #fff;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 36px rgba(37, 211, 102, 0.5);
+    }
+    .whatsapp-float i { color: #fff; }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255,255,255,0.94);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+      padding: 6px 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      background: var(--primary);
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-family: 'Poppins', sans-serif;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+    .logo-icon .small {
+      font-size: 0.6rem;
+      opacity: 0.8;
+      font-weight: 400;
+    }
+    .logo-icon .badge-dot {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 10px;
+      height: 10px;
+      background: var(--secondary);
+      border-radius: 60px;
+      border: 2px solid #fff;
+    }
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--secondary); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: 0.2s;
+      font-size: 0.85rem;
+    }
+    .nav-links a:hover { color: var(--secondary); }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 6px;
+    }
+    .nav-actions .btn-primary { padding: 6px 14px; font-size: 0.78rem; }
+    .nav-actions .btn-whatsapp { padding: 6px 14px; font-size: 0.78rem; }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, rgba(11,43,79,0.92), rgba(11,43,79,0.78)), url('https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=1600&q=80') center/cover no-repeat;
+      padding: 80px 0 60px;
+      border-radius: 0 0 36px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to top, #ffffff, transparent);
+    }
+    .hero-content {
+      max-width: 680px;
+      color: #fff;
+      position: relative;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--secondary); }
+    .hero p {
+      font-size: 1rem;
+      opacity: 0.92;
+      margin: 16px 0 24px;
+      font-weight: 300;
+      max-width: 540px;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+      font-weight: 400;
+      background: rgba(255,255,255,0.1);
+      padding: 5px 14px;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+      font-size: 0.78rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .badge-item i { color: var(--secondary); font-size: 0.85rem; }
+
+    /* sections */
+    section { padding: 50px 0; }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 28px;
+    }
+
+    /* about */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-img img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: 0.4s;
+      object-fit: cover;
+      height: 320px;
+    }
+    .about-img img:hover { transform: scale(1.01); box-shadow: var(--shadow-hover); }
+    .info-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .info-card {
+      background: var(--bg-light);
+      padding: 12px 14px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 3px solid var(--secondary);
+      font-size: 0.85rem;
+    }
+    .info-card i { font-size: 1.2rem; color: var(--secondary); }
+
+    /* services grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: 0.3s ease;
+      border: 1px solid #f0f2f5;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    .service-img {
+      height: 140px;
+      overflow: hidden;
+    }
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+    .service-card:hover .service-img img { transform: scale(1.04); }
+    .service-body {
+      padding: 16px 16px 18px;
+    }
+    .service-body i { font-size: 1.4rem; color: var(--secondary); margin-bottom: 6px; }
+    .service-body h4 { font-size: 1rem; margin: 4px 0; }
+    .service-body p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* why mts */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    .why-image img {
+      width: 100%;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      height: 300px;
+      object-fit: cover;
+    }
+    .reason-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .reason-item {
+      background: var(--bg-light);
+      padding: 12px 14px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+    .reason-item i { font-size: 1.2rem; color: var(--secondary); }
+
+    /* PROCESS */
+    .process-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+      position: relative;
+    }
+    .process-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(to right, var(--secondary), var(--primary));
+      opacity: 0.2;
+      z-index: 0;
+    }
+    .step {
+      background: #fff;
+      padding: 22px 14px;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      border-top: 4px solid var(--secondary);
+      transition: 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+    .step:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .step .step-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+    .step:hover .step-icon { background: var(--secondary); }
+    .step h4 { font-size: 0.95rem; margin-bottom: 4px; }
+    .step p { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+    .gallery-item {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      transition: 0.4s;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:hover { box-shadow: var(--shadow-hover); }
+
+    /* TEAM - horizontal row with 2 photos per line */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .team-card {
+      background: #fff;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: 0.3s;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 16px;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .team-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .team-card h4 { margin-top: 12px; font-size: 1rem; }
+    .team-card p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* PARTNERS - new section */
+    .partner-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px 50px;
+      margin-top: 10px;
+    }
+    .partner-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.7;
+      transition: 0.3s;
+    }
+    .partner-item:hover { opacity: 1; }
+    .partner-item i { font-size: 2.8rem; color: var(--primary); }
+    .partner-item span { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+
+    /* CAREERS - new section */
+    .careers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .career-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      border-left: 4px solid var(--secondary);
+      transition: 0.3s;
+    }
+    .career-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .career-card h4 { font-size: 1rem; }
+    .career-card p { font-size: 0.82rem; color: var(--text-muted); margin: 4px 0 10px; }
+    .career-card .tag {
+      background: var(--bg-light);
+      padding: 2px 12px;
+      border-radius: 60px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: inline-block;
+    }
+
+    /* reviews */
+    .review-slider {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-sm);
+      transition: 0.3s;
+      border: 1px solid #f0f2f5;
+    }
+    .review-card:hover { box-shadow: var(--shadow-hover); }
+    .review-card .stars { color: #f1c40f; margin: 8px 0; font-size: 0.85rem; }
+    .review-card img {
+      width: 44px;
+      height: 44px;
+      border-radius: 60px;
+      object-fit: cover;
+      margin-right: 12px;
+    }
+    .review-flex {
+      display: flex;
+      align-items: center;
+    }
+    .review-card p { font-size: 0.88rem; }
+
+    /* cta */
+    .cta-section {
+      background: var(--primary);
+      border-radius: 32px;
+      padding: 50px 40px;
+      color: #fff;
+      background-image: url('https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=1600&q=80');
+      background-blend-mode: overlay;
+      background-size: cover;
+      background-position: center;
+    }
+    .cta-section h2 { color: #fff; font-size: 2rem; }
+    .cta-section p { font-size: 1rem; opacity: 0.9; max-width: 540px; }
+
+    /* contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      background: #f9fafc;
+    }
+    .contact-info i { width: 24px; color: var(--secondary); }
+    .contact-info p { font-size: 0.9rem; }
+
+    /* footer */
+    footer {
+      background: #0b1a2b;
+      color: #ccc;
+      padding: 40px 0 16px;
+      border-radius: 32px 32px 0 0;
+      margin-top: 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+    }
+    footer a { color: #aaa; text-decoration: none; transition: 0.2s; font-size: 0.85rem; }
+    footer a:hover { color: var(--secondary); }
+    .social-icons a { font-size: 1.2rem; margin-right: 12px; }
+    .footer-grid h4 { color: #fff; font-size: 1rem; margin-bottom: 8px; }
+
+    /* faq */
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+      border-left: 3px solid var(--secondary);
+      cursor: pointer;
+    }
+    .faq-item h4 { font-size: 0.95rem; display: flex; justify-content: space-between; }
+    .faq-item p { font-size: 0.88rem; color: var(--text-muted); margin-top: 6px; display: none; }
+    .faq-item.active p { display: block; }
+    .faq-item i { transition: 0.3s; }
+    .faq-item.active i { transform: rotate(180deg); }
+
+    /* blog */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .blog-card {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: 0.3s;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .blog-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .blog-body { padding: 14px 16px; }
+    .blog-body h4 { font-size: 1rem; }
+    .blog-body p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .review-slider { grid-template-columns: 1fr 1fr; }
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+      .process-wrapper { grid-template-columns: repeat(2, 1fr); }
+      .process-wrapper::before { display: none; }
+      .careers-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      html { font-size: 14px; }
+      .two-col, .why-grid, .contact-grid { grid-template-columns: 1fr; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 58px;
+        left: 0;
+        width: 100%;
+        padding: 16px 20px;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        gap: 12px;
+      }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .hero { padding: 60px 0 40px; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 0.92rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .review-slider { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+      .info-cards { grid-template-columns: 1fr; }
+      .reason-list { grid-template-columns: 1fr; }
+      .cta-section { padding: 30px 20px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .process-wrapper { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .step { padding: 16px 10px; }
+      .step .step-icon { width: 44px; height: 44px; font-size: 1.1rem; }
+      .nav-actions .btn-primary, .nav-actions .btn-whatsapp { padding: 4px 10px; font-size: 0.7rem; }
+      .hero-badges { gap: 10px; }
+      .badge-item { font-size: 0.7rem; padding: 4px 10px; }
+      .team-grid { grid-template-columns: 1fr 1fr; gap: 16px; max-width: 100%; }
+      .team-card img { height: 160px; }
+      .careers-grid { grid-template-columns: 1fr; }
+      .partner-grid { gap: 20px 30px; }
+      .whatsapp-float { width: 50px; height: 50px; font-size: 1.8rem; bottom: 16px; right: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.7rem; }
+      .section-title { font-size: 1.4rem; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .process-wrapper { grid-template-columns: 1fr; }
+      .btn-primary, .btn-whatsapp, .btn-outline { padding: 8px 16px; font-size: 0.78rem; }
+      .container { padding: 0 14px; }
+      .cta-section h2 { font-size: 1.5rem; }
+      .two-col { gap: 24px; }
+      .about-img img { height: 220px; }
+      .why-image img { height: 200px; }
+      .team-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+      .team-card img { height: 200px; }
+    }
+
+    /* animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    img { border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+<!-- FIXED WHATSAPP BUTTON -->
+<a href="#" class="whatsapp-float" aria-label="Chat on WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- HEADER -->
+<header>
+  <div class="container header-inner">
+    <div class="logo-area">
+      <div class="logo-icon">
+        M<span class="small">TS</span>
+        <span class="badge-dot"></span>
+      </div>
+      <div class="logo-text">MTS<span>.</span></div>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+      <div class="nav-actions">
+        <a href="#" class="btn-primary"><i class="fas fa-phone-alt"></i> Call</a>
+        <a href="#" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </nav>
+    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-content">
+    <h1>Professional <span>Technical</span> Services in Multan</h1>
+    <p>Trusted CCTV, AC, Solar & Electrical solutions with expert technicians, quality workmanship, and reliable support.</p>
+    <div>
+      <a href="#" class="btn-primary"><i class="fas fa-file-invoice"></i> Free Quote</a>
+      <a href="#" class="btn-outline" style="margin-left:12px;"><i class="fas fa-phone-alt"></i> Call Now</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge-item"><i class="fas fa-check-circle"></i> 10+ Years</span>
+      <span class="badge-item"><i class="fas fa-user-check"></i> 200+ Clients</span>
+      <span class="badge-item"><i class="fas fa-shield-alt"></i> 100% Satisfaction</span>
+      <span class="badge-item"><i class="fas fa-clock"></i> 24/7 Support</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container fade-up">
+  <div class="two-col">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=800&q=80" alt="MTS team working" />
+    </div>
+    <div>
+      <h2 class="section-title">About MTS</h2>
+      <p style="font-size:0.92rem; color:var(--text-muted);">We are a Multan-based technical service company committed to quality, customer satisfaction, and timely service. Our experienced team ensures every project is delivered with precision.</p>
+      <div class="info-cards">
+        <div class="info-card"><i class="fas fa-users"></i> Experienced Team</div>
+        <div class="info-card"><i class="fas fa-award"></i> Quality Work</div>
+        <div class="info-card"><i class="fas fa-clock"></i> Fast Response</div>
+        <div class="info-card"><i class="fas fa-handshake"></i> Trusted Service</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="container fade-up" style="background:#fafcff; border-radius:32px; padding:40px 20px;">
+  <h2 class="section-title">Our Services</h2>
+  <p class="section-sub">Professional solutions for every technical need</p>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-img"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80" alt="CCTV" /></div><div class="service-body"><i class="fas fa-video"></i><h4>CCTV Solutions</h4><p>Installation, repair & maintenance</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Learn More →</a></div></div>
+    <div class="service-card"><div class="service-img"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=600&q=80" alt="AC" /></div><div class="service-body"><i class="fas fa-snowflake"></i><h4>AC Services</h4><p>Installation, repair, gas filling</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Learn More →</a></div></div>
+    <div class="service-card"><div class="service-img"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Solar" /></div><div class="service-body"><i class="fas fa-sun"></i><h4>Solar Solutions</h4><p>On-grid, off-grid, hybrid, cleaning</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Learn More →</a></div></div>
+    <div class="service-card"><div class="service-img"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Electrical" /></div><div class="service-body"><i class="fas fa-bolt"></i><h4>Electrical Services</h4><p>Wiring, DB, UPS, generator</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Learn More →</a></div></div>
+    <div class="service-card"><div class="service-img"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=600&q=80" alt="Maintenance" /></div><div class="service-body"><i class="fas fa-tools"></i><h4>Maintenance</h4><p>Preventive & routine maintenance</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Learn More →</a></div></div>
+    <div class="service-card"><div class="service-img"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80" alt="Consulting" /></div><div class="service-body"><i class="fas fa-chart-line"></i><h4>Technical Consulting</h4><p>Expert advice & system design</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Learn More →</a></div></div>
+    <div class="service-card"><div class="service-img"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Emergency" /></div><div class="service-body"><i class="fas fa-ambulance"></i><h4>Emergency Support</h4><p>24/7 rapid response services</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Learn More →</a></div></div>
+  </div>
+</section>
+
+<!-- WHY MTS -->
+<section id="why" class="container fade-up">
+  <div class="why-grid">
+    <div class="why-image"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=800&q=80" alt="technicians" /></div>
+    <div><h2 class="section-title">Why Choose MTS</h2><p style="font-size:0.92rem; color:var(--text-muted);">We combine experience, modern tools, and a customer-first approach to deliver outstanding results.</p>
+      <div class="reason-list">
+        <div class="reason-item"><i class="fas fa-user-tie"></i> Experienced</div>
+        <div class="reason-item"><i class="fas fa-tag"></i> Affordable</div>
+        <div class="reason-item"><i class="fas fa-bolt"></i> Quick Response</div>
+        <div class="reason-item"><i class="fas fa-tools"></i> Pro Equipment</div>
+        <div class="reason-item"><i class="fas fa-headset"></i> Reliable Support</div>
+        <div class="reason-item"><i class="fas fa-star"></i> Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="container fade-up" style="background:#f6f9fc; border-radius:32px; padding:40px 20px;">
+  <h2 class="section-title">Our Work Process</h2>
+  <p class="section-sub">A simple, transparent journey from contact to completion</p>
+  <div class="process-wrapper">
+    <div class="step"><div class="step-icon"><i class="fas fa-phone-alt"></i></div><h4>1. Contact Us</h4><p>Call or WhatsApp</p></div>
+    <div class="step"><div class="step-icon"><i class="fas fa-clipboard-check"></i></div><h4>2. Site Inspection</h4><p>Technician visits</p></div>
+    <div class="step"><div class="step-icon"><i class="fas fa-wrench"></i></div><h4>3. Professional Service</h4><p>Installation & repair</p></div>
+    <div class="step"><div class="step-icon"><i class="fas fa-smile"></i></div><h4>4. Satisfaction</h4><p>Testing & approval</p></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="container fade-up">
+  <h2 class="section-title">Projects Gallery</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80" alt="CCTV" /></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="Solar" /></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=600&q=80" alt="AC" /></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="Electrical" /></div>
+  </div>
+</section>
+
+<!-- TEAM - 2 photos per row -->
+<section class="container fade-up" style="background:#fafcff; border-radius:32px; padding:40px 20px;">
+  <h2 class="section-title">Our Expert Team</h2>
+  <p class="section-sub">Meet the professionals behind MTS</p>
+  <div class="team-grid">
+    <div class="team-card"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400&q=80" alt="Ahmed" /><h4>Ahmed Raza</h4><p>Senior Technician</p></div>
+    <div class="team-card"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400&q=80" alt="Fatima" /><h4>Fatima Noor</h4><p>Solar Engineer</p></div>
+    <div class="team-card"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400&q=80" alt="Usman" /><h4>Usman Ali</h4><p>Electrical Expert</p></div>
+    <div class="team-card"><img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=400&q=80" alt="Sara" /><h4>Sara Khan</h4><p>Customer Support</p></div>
+  </div>
+</section>
+
+<!-- PARTNERS - NEW SECTION -->
+<section class="container fade-up">
+  <h2 class="section-title">Our Trusted Partners</h2>
+  <p class="section-sub">We collaborate with industry leaders</p>
+  <div class="partner-grid">
+    <div class="partner-item"><i class="fas fa-building"></i><span>TechCorp</span></div>
+    <div class="partner-item"><i class="fas fa-solar-panel"></i><span>SolarOne</span></div>
+    <div class="partner-item"><i class="fas fa-shield-alt"></i><span>SecureLink</span></div>
+    <div class="partner-item"><i class="fas fa-bolt"></i><span>PowerGrid</span></div>
+    <div class="partner-item"><i class="fas fa-tools"></i><span>ToolMaster</span></div>
+    <div class="partner-item"><i class="fas fa-wifi"></i><span>NetConnect</span></div>
+  </div>
+</section>
+
+<!-- CAREERS - NEW SECTION -->
+<section class="container fade-up" style="background:#f6f9fc; border-radius:32px; padding:40px 20px;">
+  <h2 class="section-title">Join Our Team</h2>
+  <p class="section-sub">We're always looking for talented professionals</p>
+  <div class="careers-grid">
+    <div class="career-card"><h4>Senior Technician</h4><p>Multan | Full-time</p><span class="tag">Experienced</span></div>
+    <div class="career-card"><h4>Solar Engineer</h4><p>Multan | Full-time</p><span class="tag">Certified</span></div>
+    <div class="career-card"><h4>Customer Support</h4><p>Multan | Part-time</p><span class="tag">Flexible</span></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="container fade-up">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <div class="faq-item active"><h4><span>What services do you offer?</span> <i class="fas fa-chevron-down"></i></h4><p>We offer CCTV, AC, Solar, and Electrical services including installation, repair, maintenance, and consulting.</p></div>
+  <div class="faq-item"><h4><span>Do you provide emergency support?</span> <i class="fas fa-chevron-down"></i></h4><p>Yes, we offer 24/7 emergency support for urgent technical issues.</p></div>
+  <div class="faq-item"><h4><span>Are your technicians certified?</span> <i class="fas fa-chevron-down"></i></h4><p>All our technicians are professionally trained and certified.</p></div>
+  <div class="faq-item"><h4><span>How can I get a free quote?</span> <i class="fas fa-chevron-down"></i></h4><p>Contact us via phone or WhatsApp, and we'll provide a free estimate.</p></div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="container fade-up" style="background:#fafcff; border-radius:32px; padding:40px 20px;">
+  <h2 class="section-title">Latest Insights</h2>
+  <p class="section-sub">Tips and updates from our experts</p>
+  <div class="blog-grid">
+    <div class="blog-card"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?w=600&q=80" alt="blog" /><div class="blog-body"><h4>Top 5 CCTV Tips</h4><p>How to choose the right security system.</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Read More →</a></div></div>
+    <div class="blog-card"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80" alt="blog" /><div class="blog-body"><h4>Solar Savings Guide</h4><p>Maximize your ROI with smart solar.</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Read More →</a></div></div>
+    <div class="blog-card"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80" alt="blog" /><div class="blog-body"><h4>Electrical Safety</h4><p>Essential tips for safe home wiring.</p><a href="#" style="color:var(--secondary);font-weight:600;font-size:0.82rem;">Read More →</a></div></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="container fade-up">
+  <h2 class="section-title">Customer Reviews</h2>
+  <div class="review-slider">
+    <div class="review-card"><div class="review-flex"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="user" /><div><h4 style="font-size:0.95rem;">Ali R.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><p>“Excellent AC repair service, very professional.”</p></div>
+    <div class="review-card"><div class="review-flex"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="user" /><div><h4 style="font-size:0.95rem;">Sana K.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><p>“Solar installation was flawless. Highly recommend.”</p></div>
+    <div class="review-card"><div class="review-flex"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="user" /><div><h4 style="font-size:0.95rem;">Usman M.</h4><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div></div><p>“Fast response and quality CCTV setup.”</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="container fade-up">
+  <div class="cta-section">
+    <h2>Need Professional Technical Services?</h2>
+    <p>Our experienced technicians are ready to help you with CCTV, AC, Solar and Electrical solutions across Multan.</p>
+    <div style="margin-top:24px; display:flex; gap:14px; flex-wrap:wrap;">
+      <a href="#" class="btn-primary"><i class="fas fa-phone-alt"></i> Call Now</a>
+      <a href="#" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="container fade-up">
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="contact-grid">
+    <div class="contact-form">
+      <input type="text" placeholder="Full Name" />
+      <input type="tel" placeholder="Phone Number" />
+      <select><option>Service Required</option><option>CCTV</option><option>AC</option><option>Solar</option><option>Electrical</option></select>
+      <textarea rows="3" placeholder="Message"></textarea>
+      <button class="btn-primary">Submit <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <div class="contact-info">
+      <p><i class="fas fa-map-marker-alt"></i> Multan, Pakistan</p>
+      <p><i class="fas fa-phone-alt"></i> +92 300 1234567</p>
+      <p><i class="fab fa-whatsapp"></i> +92 300 7654321</p>
+      <p><i class="fas fa-envelope"></i> info@mtsmultan.com</p>
+      <p><i class="fas fa-clock"></i> Mon-Sat: 9AM – 8PM</p>
+      <div style="margin-top:16px; border-radius:14px; overflow:hidden; height:140px; background:#ddd;">
+        <iframe width="100%" height="140" style="border:0;" loading="lazy" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109720.762376244!2d71.424178!3d30.157463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x393b7b6f9f8b6a2b%3A0x7f5b6b6f9f8b6a2b!2sMultan!5e0!3m2!1sen!2s!4v1234567890"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+        <div style="background:#e67e22; width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-family:'Poppins',sans-serif; font-size:0.9rem;">M</div>
+        <span style="color:#fff; font-weight:700; font-size:1.2rem; font-family:'Poppins',sans-serif;">MTS<span style="color:#e67e22;">.</span></span>
+      </div>
+      <p style="font-size:0.85rem;">Multan Technician Service – professional technical solutions you can trust.</p>
+    </div>
+    <div><h4>Quick Links</h4><a href="#">Home</a><br><a href="#services">Services</a><br><a href="#about">About</a><br><a href="#blog">Blog</a></div>
+    <div><h4>Services</h4><a href="#">CCTV</a><br><a href="#">AC</a><br><a href="#">Solar</a><br><a href="#">Electrical</a></div>
+    <div><h4>Contact</h4><p style="font-size:0.85rem;"><i class="fas fa-phone-alt"></i> +92 300 1234567</p><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+  </div>
+  <div class="container" style="border-top:1px solid #1e3142; margin-top:24px; padding-top:14px; text-align:center; font-size:0.75rem;">© 2026 MTS – Multan Technician Service. All rights reserved.</div>
+</footer>
+
+<script>
+  // fade-up
+  const faders = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12 });
+  faders.forEach(el => observer.observe(el));
+
+  // mobile toggle
+  document.getElementById('menuToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // FAQ toggle
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+</script>
+</body>
+</html>
